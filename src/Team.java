@@ -30,13 +30,15 @@ public class Team implements ListSelectionListener, ActionListener {
     private Player[] players = new Player[18];							// vettore di giocatori
 
     MigLayout vertical = new MigLayout("wrap, flowy",
-                                       "[center]",               // column constraints : 1 column
-                                       "[][]20[][]");      // row constraints    : 4 rows, middle rows with a gap of 20
+                                       "[center]",                      // column constraints : 1 column
+                                       "[][]20[][]");                   // row constraints    : 4 rows, middle rows with a gap of 20
     // pannello padre della finestra
     private JPanel team_panel = new JPanel(vertical);
 
     // formazioni disponibili e mene a tendina per sceglierle
     JComboBox formations = new JComboBox(new String[]{ "3-5-2", "4-4-2", "5-3-2"});
+
+    boolean formation_changed = false;
 
     private JList list = new JList(new String[]{ "Goal Keeper", "Back 1", "Back 2", "Back 3", "Midfielder 1", "Midfielder 2",
                                                  "Midfielder 3", "Midfielder 4", "Midfielder 5", "Forward 1", "Forward 2",
@@ -46,7 +48,7 @@ public class Team implements ListSelectionListener, ActionListener {
     // pannello contenente la lista dei giocatori sulla sinistra
     private JScrollPane players_list_panel = new JScrollPane(list);
 
-    MigLayout grid = new MigLayout("wrap",
+    MigLayout grid = new MigLayout("wrap, fillx",
                                     "[][]20[][]",
                                     "[]20[]20[]20[]");
     // pannello contenente le statistiche dei giocatori
@@ -54,6 +56,7 @@ public class Team implements ListSelectionListener, ActionListener {
 
     private JSplitPane split_panel;     								// pannello "padre"
 
+    private JLabel keeper_label;
     private JTextField enter_number;									// campo in cui inserire il numero
     private JSpinner stat_field1;										// spinner parametro 1 (attack)
     private JSpinner stat_field2;										// spinner parametro 2 (defense)
@@ -142,7 +145,7 @@ public class Team implements ListSelectionListener, ActionListener {
         stat_field6 = new JSpinner(spinner_model6);
 
         // Parametro 7
-        JLabel stat7 = new JLabel("Goal Keeping:");
+        keeper_label = new JLabel("Goal Keeping:");
         stat5.setHorizontalAlignment(JLabel.CENTER);
         stat_field7 = new JSpinner(spinner_model7);
 
@@ -154,14 +157,10 @@ public class Team implements ListSelectionListener, ActionListener {
         team_panel.add(players_label);
         team_panel.add(players_list_panel, "wmin 150, hmin 325");
 
-        players_stats_panel.add(number);
-        players_stats_panel.add(enter_number, "wrap, wmin 25");
-
-   /*     if (((String)list.getSelectedValue()).equals("Goal Keeper")) {
-            players_stats_panel.add(stat7);
-            players_stats_panel.add(stat_field7, "wrap");
-        }      */
-
+        players_stats_panel.add(number, "span 2, right");
+        players_stats_panel.add(enter_number, "wrap, span 2, left, wmin 25");
+        players_stats_panel.add(keeper_label);
+        players_stats_panel.add(stat_field7, "wrap");
         players_stats_panel.add(stat1);
         players_stats_panel.add(stat_field1);
         players_stats_panel.add(stat2);
@@ -174,6 +173,9 @@ public class Team implements ListSelectionListener, ActionListener {
         players_stats_panel.add(stat_field5);
         players_stats_panel.add(stat6);
         players_stats_panel.add(stat_field6);
+        players_stats_panel.add(random_stats, "span 2, center");
+        players_stats_panel.add(save_button, "span 2, center");
+
 
         // Create a split pane with the two scroll panes in it.
         split_panel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, team_panel, players_stats_panel);
@@ -188,7 +190,7 @@ public class Team implements ListSelectionListener, ActionListener {
 
         // listener bottone salva giocatore corrente
         save_button.addActionListener(this);
-        save_button.setActionCommand("save");
+        save_button.setActionCommand("save_player");
 
         // listener bottone salva tutto
         save_all_button.addActionListener(this);
@@ -200,18 +202,46 @@ public class Team implements ListSelectionListener, ActionListener {
     }
 
     public void valueChanged(ListSelectionEvent e) {
-        enter_number.setText(Integer.toString(players[list.getSelectedIndex()].getNumber()));
-        stat_field1.setValue(players[list.getSelectedIndex()].getAttack());
-        stat_field2.setValue(players[list.getSelectedIndex()].getDefense());
-        stat_field3.setValue(players[list.getSelectedIndex()].getPower());
-        stat_field4.setValue(players[list.getSelectedIndex()].getPrecision());
-        stat_field5.setValue(players[list.getSelectedIndex()].getSpeed());
-        stat_field6.setValue(players[list.getSelectedIndex()].getTackle());
-        stat_field7.setValue(players[list.getSelectedIndex()].getGoal_keeping());
+        if (formation_changed) {
+            enter_number.setText(Integer.toString(players[0].getNumber()));
+            stat_field1.setValue(players[0].getAttack());
+            stat_field2.setValue(players[0].getDefense());
+            stat_field3.setValue(players[0].getPower());
+            stat_field4.setValue(players[0].getPrecision());
+            stat_field5.setValue(players[0].getSpeed());
+            stat_field6.setValue(players[0].getTackle());
+            stat_field7.setValue(players[0].getGoal_keeping());
+            formation_changed = false;
+        }
+        else {
+            JList l = (JList)e.getSource();
+            if (l.getSelectedIndex() == 0) {
+                // add goal keeping stat only if the goal keeper is selected
+                players_stats_panel.add(keeper_label, 2);
+                players_stats_panel.add(stat_field7, "wrap", 3);
+                stat_field7.setValue(players[0].getGoal_keeping());
+                players_stats_panel.revalidate();
+                players_stats_panel.repaint();
+            }
+            else {
+                players_stats_panel.remove(keeper_label);
+                players_stats_panel.remove(stat_field7);
+                players_stats_panel.revalidate();
+                players_stats_panel.repaint();
+            }
+            enter_number.setText(Integer.toString(players[l.getSelectedIndex()].getNumber()));
+            stat_field1.setValue(players[l.getSelectedIndex()].getAttack());
+            stat_field2.setValue(players[l.getSelectedIndex()].getDefense());
+            stat_field3.setValue(players[l.getSelectedIndex()].getPower());
+            stat_field4.setValue(players[l.getSelectedIndex()].getPrecision());
+            stat_field5.setValue(players[l.getSelectedIndex()].getSpeed());
+            stat_field6.setValue(players[l.getSelectedIndex()].getTackle());
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("change_formation")){
+            formation_changed = true;
             JComboBox cb = (JComboBox)e.getSource();
             String scheme = (String)cb.getSelectedItem();
             updatePlayers(scheme);
