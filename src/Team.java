@@ -6,11 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import com.google.gson.Gson;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Random;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -28,51 +30,53 @@ import javax.swing.SpinnerNumberModel;
 import net.miginfocom.swing.MigLayout;
 
 public class Team implements ListSelectionListener, ActionListener {
-    private Player[] players = new Player[18];							// vettore di giocatori
+    private Player[] players = new Player[18];							// player's array
 
     MigLayout vertical = new MigLayout("wrap, flowy",
                                        "[center]",                      // column constraints : 1 column
-                                       "[][]20[][]10[]");                // row constraints    : 4 rows, middle rows with a gap of 20
+                                       "[][]20[][]10[]");               // row constraints    : 4 rows, middle rows with a gap of 20
     MigLayout grid = new MigLayout("wrap, fillx",
             "[center][center]20[center][center]",
             "[center]20[center]20[center]20[center]");
 
-    // pannello padre della lista dei giocatori e del menu a tendina
-    // per selezionare la formazione
+    // panel of the player's list and of the formation scheme combo box
     private JPanel team_panel = new JPanel(vertical);
 
-    // formazioni disponibili e mene a tendina per sceglierle
+    // available formation scheme
     JComboBox formations = new JComboBox(new String[]{ "3-5-2", "4-4-2", "5-3-2"});
     private boolean formation_changed = false;
     private JList list = new JList(new String[]{ "Goal Keeper", "Back 1", "Back 2", "Back 3", "Midfielder 1", "Midfielder 2",
                                                  "Midfielder 3", "Midfielder 4", "Midfielder 5", "Forward 1", "Forward 2",
                                                  "Backup 1", "Backup 2", "Backup 3", "Backup 4", "Backup 5", "Backup 6",
                                                  "Backup 7" });
-    // pannello contenente la lista dei giocatori sulla sinistra
+    // panel of the scroll list
     private JScrollPane players_list_panel = new JScrollPane(list);
 
-    // pannello contenente le statistiche dei giocatori
+    // panel containing the player's statistics
     private JPanel players_stats_panel = new JPanel(grid);
-    private JSplitPane split_panel;     								// pannello "padre"
-    private JLabel keeper_label;
-    private JTextField enter_number;									// campo in cui inserire il numero
-    private JSpinner attack_stat;										// spinner parametro 1 (attack)
-    private JSpinner defense_stat;										// spinner parametro 2 (defense)
-    private JSpinner power_stat;										// spinner parametro 3 (power)
-    private JSpinner precision_stat;									// spinner parametro 4 (precision)
-    private JSpinner speed_stat;										// spinner parametro 5 (speed)
-    private JSpinner tackle_stat;										// spinner parametro 6 (tackle)
-    private JSpinner goal_keeping_stat;									// spinner parametro 7 (goal_keeping)
-    private JButton save_all_button = new JButton("Print");				// bottone per generare il file di statistiche
-    private JButton random_all_stats = new JButton("All Random");		// bottone per generare statistiche random per tutti i giocatori
-    private JButton save_button = new JButton("Save");					// bottone per salvare le statistiche del giocatore corrente
-    private JButton random_stats = new JButton("Random");				// bottone per generare statistiche random per il giocatore corrente
+    private JLabel keeper_label;                                        // goal keeper label
+    private JTextField enter_number;									// player's number text field
+    private JSpinner attack_stat;										// spinner 1 (attack)
+    private JSpinner defense_stat;										// spinner 2 (defense)
+    private JSpinner power_stat;										// spinner 3 (power)
+    private JSpinner precision_stat;									// spinner 4 (precision)
+    private JSpinner speed_stat;										// spinner 5 (speed)
+    private JSpinner tackle_stat;										// spinner 6 (tackle)
+    private JSpinner goal_keeping_stat;									// spinner 7 (goal_keeping)
+    private JButton save_button = new JButton("Save");					// saves selected player statistics
+    private JButton random_stats_button = new JButton("Random");		// generates random statistics for the selected player
+    private JButton random_all_button = new JButton("Random All");		// generates random statistics for all the players
+    private JButton start_button = new JButton("Start");				// generates the player's statistics file
 
-    public Team() {
+    private JSplitPane split_panel;
+    private static final int split_panel_width = 550;
+    private static final int split_panel_height = 410;
 
+    public Team(String team) {
         // creo array giocatori
         for(int i = 1; i <= players.length; i++) {
             players[i-1] = new Player();
+            players[i-1].setTeam(team);
             players[i-1].setNumber(i);
         }
 
@@ -81,7 +85,7 @@ public class Team implements ListSelectionListener, ActionListener {
         ****************************************/
         formations.setSelectedIndex(0);
         formations.addActionListener(this);
-        formations.setActionCommand("change_formation");
+        formations.setActionCommand("change formation");
 
        /****************************************
         *			LISTA GIOCATORI				*											 												    *
@@ -139,31 +143,32 @@ public class Team implements ListSelectionListener, ActionListener {
         players_stats_panel.add(speed_stat);
         players_stats_panel.add(new JLabel("Tackle:"));
         players_stats_panel.add(tackle_stat);
-        players_stats_panel.add(random_stats, "span 2, center");
-        players_stats_panel.add(save_button, "span 2, center");
+        players_stats_panel.add(random_stats_button, "span 2, center");
+        players_stats_panel.add(save_button, "span 2, wrap 75, center");
+        players_stats_panel.add(random_all_button, "span 4");
 
         // Create a split pane with the two scroll panes in it.
         split_panel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, team_panel, players_stats_panel);
         split_panel.setDividerLocation(150);
 
         //Provide a preferred size for the split pane.
-        split_panel.setPreferredSize(new Dimension(550, 410));
+        split_panel.setPreferredSize(new Dimension(split_panel_width, split_panel_height));
 
-        // listener bottone random giocatore corrente
-        random_stats.addActionListener(this);
-        random_stats.setActionCommand("random");
+        // "Random" button action listener
+        random_stats_button.addActionListener(this);
+        random_stats_button.setActionCommand("random");
 
-        // listener bottone salva giocatore corrente
+        // "Save" button action listener
         save_button.addActionListener(this);
-        save_button.setActionCommand("save_player");
+        save_button.setActionCommand("save player");
 
-        // listener bottone salva tutto
-        save_all_button.addActionListener(this);
-        save_all_button.setActionCommand("print");
+        // "Random All" button action listener
+        random_all_button.addActionListener(this);
+        random_all_button.setActionCommand("random all");
 
-        // listener bottone random tutti i giocatori
-        random_all_stats.addActionListener(this);
-        random_all_stats.setActionCommand("all");
+        // "Start" button action listener
+        start_button.addActionListener(this);
+        start_button.setActionCommand("start");
     }
 
     public void valueChanged(ListSelectionEvent e) {
@@ -184,17 +189,23 @@ public class Team implements ListSelectionListener, ActionListener {
             // handle goal keeper special case
             if (l.getSelectedIndex() == 0) {
                 // add goal keeping stat only if the goal keeper is selected
-                players_stats_panel.add(keeper_label, 2);
+              /*  players_stats_panel.add(keeper_label, 2);
                 players_stats_panel.add(goal_keeping_stat, "wrap", 3);
                 goal_keeping_stat.setValue(players[0].getGoal_keeping());
                 players_stats_panel.revalidate();
-                players_stats_panel.repaint();
+                players_stats_panel.repaint(); */
+                keeper_label.setEnabled(true);
+                goal_keeping_stat.setEnabled(true);
+                goal_keeping_stat.setValue(players[0].getGoal_keeping());
             }
             else {
-                players_stats_panel.remove(keeper_label);
+             /*   players_stats_panel.remove(keeper_label);
                 players_stats_panel.remove(goal_keeping_stat);
                 players_stats_panel.revalidate();
-                players_stats_panel.repaint();
+                players_stats_panel.repaint();*/
+                keeper_label.setEnabled(false);
+                goal_keeping_stat.setValue(0);
+                goal_keeping_stat.setEnabled(false);
             }
             // update spinners values
             enter_number.setText(Integer.toString(players[l.getSelectedIndex()].getNumber()));
@@ -209,12 +220,11 @@ public class Team implements ListSelectionListener, ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         // fired whenever the formation scheme is changed in the combo box
-        if(e.getActionCommand().equals("change_formation")){
+        if(e.getActionCommand().equals("change formation")){
             formation_changed = true;
             JComboBox cb = (JComboBox)e.getSource();
             String scheme = (String)cb.getSelectedItem();
             updatePlayers(scheme);
-          //  updateFormation(scheme);
         }
         // fired whenever the button "Random" is clicked
         else if(e.getActionCommand().equals("random")){
@@ -230,7 +240,7 @@ public class Team implements ListSelectionListener, ActionListener {
                 goal_keeping_stat.setValue(rand.nextInt(100));
         }
         // fired whenever the button "Save" is clicked
-        else if(e.getActionCommand().equals("save_player")) {
+        else if(e.getActionCommand().equals("save player")) {
             // Stores the statistics values of the selected player
     		players[list.getSelectedIndex()].setNumber(Integer.parseInt(enter_number.getText()));
     		players[list.getSelectedIndex()].setAttack((Integer) attack_stat.getValue());
@@ -249,6 +259,79 @@ public class Team implements ListSelectionListener, ActionListener {
             // info box
             JOptionPane.showMessageDialog(null, "Player Statistics Saved!", "Info Message", JOptionPane.INFORMATION_MESSAGE);
     	}
+        // fired whenever the button "All Random" is clicked
+        else if (e.getActionCommand().equals("random all")) {
+            Random rand = new Random();
+            for(int i = 0; i < players.length; i++) {
+                // update GUI for the current selected player
+                if(i == list.getSelectedIndex()) {
+                    int rand_int = rand.nextInt(100);
+                    attack_stat.setValue(rand_int);
+                    players[i].setAttack(rand_int);
+
+                    rand_int = rand.nextInt(100);
+                    defense_stat.setValue(rand_int);
+                    players[i].setDefense(rand_int);
+
+                    rand_int = rand.nextInt(100);
+                    power_stat.setValue(rand_int);
+                    players[i].setPower(rand_int);
+
+                    rand_int = rand.nextInt(100);
+                    precision_stat.setValue(rand_int);
+                    players[i].setPrecision(rand_int);
+
+                    rand_int = rand.nextInt(100);
+                    speed_stat.setValue(rand_int);
+                    players[i].setSpeed(rand_int);
+
+                    rand_int = rand.nextInt(100);
+                    tackle_stat.setValue(rand_int);
+                    players[i].setTackle(rand_int);
+                    // handle goal keeper special case
+                    if (list.getSelectedIndex() == 0) {
+                        rand_int = rand.nextInt(100);
+                        goal_keeping_stat.setValue(rand_int);
+                        players[i].setGoal_keeping(rand_int);
+                    }
+                }
+                else {	// altrimenti aggiorniamo solo i valori del player
+                    players[i].setAttack(rand.nextInt(100));
+                    players[i].setDefense(rand.nextInt(100));
+                    players[i].setPower(rand.nextInt(100));
+                    players[i].setPrecision(rand.nextInt(100));
+                    players[i].setSpeed(rand.nextInt(100));
+                    players[i].setTackle(rand.nextInt(100));
+                    // handle goal keeper special case
+                    if (i == 0)
+                        players[i].setGoal_keeping(rand.nextInt(100));
+                }
+            }
+        }
+        // fired whenever the button "Start" is clicked
+        else if (e.getActionCommand().equals("start")) {
+            // conversione player --> json
+            Gson gson = new Gson();
+            String json = new String();
+
+            // concatena le statistiche in un'unica stringa json
+            for (int i = 0; i < players.length; i++) {
+                json = json + gson.toJson(players[i]) + '\n';
+            }
+
+            // stampa su file
+            try {
+                // crea file di nome "Settings"
+                FileWriter fstream = new FileWriter("Settings");
+                BufferedWriter out = new BufferedWriter(fstream);
+
+                // scrive sul file
+                out.write(json);
+
+                // chiude lo stream
+                out.close();
+            } catch (Exception exc) { System.err.println("Error: " + exc.getMessage());}
+        }
     }
 
     private void updatePlayers(String scheme) {
@@ -272,21 +355,12 @@ public class Team implements ListSelectionListener, ActionListener {
         list.setSelectedIndex(0);
     }
 
-
     // ritorna il pannello padre
     public JSplitPane getSplitPane() {
         return split_panel;
     }
 
-    public JPanel getTeamPanel() {
-        return team_panel;
-    }
-
-    public JButton getGenerateButton() {
-        return save_all_button;
-    }
-
-    public JButton getRandomButton() {
-        return random_all_stats;
+    public JButton getStartButton() {
+        return start_button;
     }
 }
