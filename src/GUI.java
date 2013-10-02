@@ -11,11 +11,51 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import java.lang.InterruptedException;
 
 public class GUI {
     private static final int frame_width = 570;
     private static final int frame_height = 480;
+    private static final JFrame t1_frame = new JFrame("Team 1");
+    private static final JFrame t2_frame = new JFrame("Team 2");
+    private static final Team t1 = new Team("Team_One");
+    private static final Team t2 = new Team("Team_Two");
+
+    private static Thread check_t1, check_t2;
+    private static boolean one_team_left = false;
+
+    private static Thread makeThread(final Team t, final JFrame f) {
+        Runnable runloop = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (!t.getDone())
+                        Thread.sleep(500);
+                }catch(InterruptedException e) {return;}
+
+                synchronized (this) {
+                    if (!one_team_left) {
+                        one_team_left = true;
+                        String message = "Setup ";
+                        if (t.getTeam().equals("Team_One"))
+                            message = message + "Team 2 ";
+                        else
+                            message = message + "Team 1 ";
+
+                        message = message + "to start the game";
+                        JOptionPane.showMessageDialog(null, message, "Info Message", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                        System.out.println("Send Data");
+                }
+                f.dispose();
+            }
+        };
+        return new Thread(runloop);
+    }
+
 
     /**
      * Create the GUI and show it.  For thread safety,
@@ -24,11 +64,9 @@ public class GUI {
      */
     private static void createAndShowGUI() {
         //Create and set up the window for team 1.
-        JFrame t1_frame = new JFrame("Team 1");
         t1_frame.setLayout(new FlowLayout());
 
         // aggiunge elementi al pannello
-        Team t1 = new Team("Team_One");
         t1_frame.getContentPane().add(t1.getSplitPane());
         t1_frame.getContentPane().add(t1.getStartButton());
 
@@ -46,11 +84,9 @@ public class GUI {
         t1_frame.setLocation(x1,y1);
 
         //Create and set up the window for team 2.
-        JFrame t2_frame = new JFrame("Team 2");
         t2_frame.setLayout(new FlowLayout());
 
         // aggiunge elementi al pannello
-        Team t2 = new Team("Team_Two");
         t2_frame.getContentPane().add(t2.getSplitPane());
         t2_frame.getContentPane().add(t2.getStartButton());
 
@@ -77,5 +113,11 @@ public class GUI {
                 createAndShowGUI();
             }
         });
+
+        check_t1 = makeThread(t1,t1_frame);
+        check_t2 = makeThread(t2,t2_frame);
+
+        check_t1.start();
+        check_t2.start();
     }
 }

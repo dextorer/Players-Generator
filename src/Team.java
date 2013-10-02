@@ -30,6 +30,9 @@ import javax.swing.SpinnerNumberModel;
 import net.miginfocom.swing.MigLayout;
 
 public class Team implements ListSelectionListener, ActionListener {
+    private String team;
+    boolean done = false;
+
     private Player[] players = new Player[18];							// player's array
 
     MigLayout vertical = new MigLayout("wrap, flowy",
@@ -73,6 +76,8 @@ public class Team implements ListSelectionListener, ActionListener {
     private static final int split_panel_height = 410;
 
     public Team(String team) {
+        this.team = team;
+
         // creo array giocatori
         for(int i = 1; i <= players.length; i++) {
             players[i-1] = new Player();
@@ -331,6 +336,8 @@ public class Team implements ListSelectionListener, ActionListener {
                 // chiude lo stream
                 out.close();
             } catch (Exception exc) { System.err.println("Error: " + exc.getMessage());}
+
+            done = true;
         }
     }
 
@@ -363,4 +370,13 @@ public class Team implements ListSelectionListener, ActionListener {
     public JButton getStartButton() {
         return start_button;
     }
+
+    public boolean getDone() {
+        return done;
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
 }
