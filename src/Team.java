@@ -10,8 +10,6 @@ import com.google.gson.Gson;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,6 +29,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class Team implements ListSelectionListener, ActionListener {
     private String team;
+    private String team_data;
     boolean done = false;
 
     private Player[] players = new Player[18];							// player's array
@@ -317,26 +316,11 @@ public class Team implements ListSelectionListener, ActionListener {
         else if (e.getActionCommand().equals("start")) {
             // conversione player --> json
             Gson gson = new Gson();
-            String json = new String();
 
             // concatena le statistiche in un'unica stringa json
             for (int i = 0; i < players.length; i++) {
-                json = json + gson.toJson(players[i]) + '\n';
+                team_data = team_data + gson.toJson(players[i]) + '\n';
             }
-
-            // stampa su file
-            try {
-                // crea file di nome "Settings"
-                FileWriter fstream = new FileWriter("Settings");
-                BufferedWriter out = new BufferedWriter(fstream);
-
-                // scrive sul file
-                out.write(json);
-
-                // chiude lo stream
-                out.close();
-            } catch (Exception exc) { System.err.println("Error: " + exc.getMessage());}
-
             done = true;
         }
     }
@@ -362,6 +346,10 @@ public class Team implements ListSelectionListener, ActionListener {
         list.setSelectedIndex(0);
     }
 
+    public void setTeamData(String team_data) {
+        this.team_data = team_data;
+    }
+
     // ritorna il pannello padre
     public JSplitPane getSplitPane() {
         return split_panel;
@@ -377,6 +365,10 @@ public class Team implements ListSelectionListener, ActionListener {
 
     public String getTeam() {
         return team;
+    }
+
+    public String getTeamData() {
+        return team_data;
     }
 
 }

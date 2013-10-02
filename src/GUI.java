@@ -13,6 +13,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.lang.InterruptedException;
 
 public class GUI {
@@ -25,6 +27,9 @@ public class GUI {
 
     private static Thread check_t1, check_t2;
     private static boolean one_team_left = false;
+    private static String data = "";
+    private static String team1_data = "";
+    private static String team2_data = "";
 
     private static Thread makeThread(final Team t, final JFrame f) {
         Runnable runloop = new Runnable() {
@@ -38,6 +43,7 @@ public class GUI {
                 synchronized (this) {
                     if (!one_team_left) {
                         one_team_left = true;
+                        data = t.getTeamData();
                         String message = "Setup ";
                         if (t.getTeam().equals("Team_One"))
                             message = message + "Team 2 ";
@@ -47,8 +53,16 @@ public class GUI {
                         message = message + "to start the game";
                         JOptionPane.showMessageDialog(null, message, "Info Message", JOptionPane.INFORMATION_MESSAGE);
                     }
-                    else
+                    else {
                         System.out.println("Send Data");
+                        data = data + t.getTeamData();
+                        try {
+                            FileWriter fstream = new FileWriter("Settings");
+                            BufferedWriter out = new BufferedWriter(fstream);
+                            out.write(data);
+                            out.close();
+                        } catch (Exception exc) { System.err.println("Error: " + exc.getMessage());}
+                    }
                 }
                 f.dispose();
             }
@@ -83,6 +97,8 @@ public class GUI {
         int y1 = (dim1.height-frame_height)/2;
         t1_frame.setLocation(x1,y1);
 
+        t1.setTeamData(team1_data);
+
         //Create and set up the window for team 2.
         t2_frame.setLayout(new FlowLayout());
 
@@ -102,6 +118,8 @@ public class GUI {
         int x2 = dim2.width-frame_width-25;
         int y2 = (dim2.height-frame_height)/2;
         t2_frame.setLocation(x2,y2);
+
+        t2.setTeamData(team2_data);
     }
 
     /**

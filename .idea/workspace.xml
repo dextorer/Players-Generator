@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/Team.java" line="138" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/src/Team.java" line="137" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c190352-b17a-4009-8e7a-f6939b4a57f0" name="Default" comment="">
@@ -12,13 +12,13 @@
     </list>
     <ignored path="Stat_Generator.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/GUI.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380701987882" ignored="false" />
+    <file path="/GUI.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380703318205" ignored="false" />
     <file path="/fragment.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380697767247" ignored="false" />
     <file path="$USER_HOME$/Documents/Università/IA/Progetto/JavaProlog/.idea/workspace.xml" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1377371271699" ignored="false" />
     <file path="$USER_HOME$/Documents/Università/IA/Progetto/JavaProlog/src/Intelligence.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1377540912295" ignored="false" />
     <file path="/Intelligence.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1377540738094" ignored="false" />
     <file path="/Player.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380612936324" ignored="false" />
-    <file path="/Team.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380701447065" ignored="false" />
+    <file path="/Team.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380702972464" ignored="false" />
     <file path="/Dummy.txt" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380696284887" ignored="false" />
     <file path="/a.dummy" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380608780128" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -94,13 +94,14 @@
       <file leaf-file-name="Team.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Team.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="7" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
+            <state line="366" column="0" selection-start="17538" selection-end="17538" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="method#Team#0;class#Team#0" expanded="false" />
                 <element signature="method#valueChanged#0;class#Team#0" expanded="false" />
                 <element signature="method#updatePlayers#0;class#Team#0" expanded="false" />
+                <element signature="method#setTeamData#0;class#Team#0" expanded="false" />
                 <element signature="method#getSplitPane#0;class#Team#0" expanded="false" />
                 <element signature="method#getStartButton#0;class#Team#0" expanded="false" />
+                <element signature="method#getDone#0;class#Team#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -109,12 +110,11 @@
       <file leaf-file-name="GUI.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="28" selection-start="1882" selection-end="1882" vertical-scroll-proportion="0.44833624">
+            <state line="65" column="17" selection-start="2533" selection-end="2533" vertical-scroll-proportion="0.7162872">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#928#1906#0" expanded="true" />
-                <element signature="e#1895#1896#0" expanded="true" />
-                <element signature="method#createAndShowGUI#0;class#GUI#0" expanded="false" />
+                <element signature="e#1109#2586#0" expanded="true" />
+                <element signature="e#2575#2576#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -452,7 +452,7 @@
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.479062" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40703517" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17420435" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -539,18 +539,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="36" selection-start="2287" selection-end="2287" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#928#1906#0" expanded="true" />
-            <element signature="e#1895#1896#0" expanded="true" />
-            <element signature="method#createAndShowGUI#0;class#GUI#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="25" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0">
@@ -562,11 +550,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="259" column="104" selection-start="12996" selection-end="13007" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="method#Team#0;class#Team#0" expanded="false" />
             <element signature="method#valueChanged#0;class#Team#0" expanded="false" />
             <element signature="method#updatePlayers#0;class#Team#0" expanded="false" />
+            <element signature="method#setTeamData#0;class#Team#0" expanded="false" />
             <element signature="method#getSplitPane#0;class#Team#0" expanded="false" />
             <element signature="method#getStartButton#0;class#Team#0" expanded="false" />
+            <element signature="method#getDone#0;class#Team#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -576,9 +565,8 @@
         <state line="67" column="36" selection-start="2287" selection-end="2287" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#928#1906#0" expanded="true" />
-            <element signature="e#1895#1896#0" expanded="true" />
-            <element signature="method#createAndShowGUI#0;class#GUI#0" expanded="false" />
+            <element signature="e#1109#2586#0" expanded="true" />
+            <element signature="e#2575#2576#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -594,11 +582,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="67" column="126" selection-start="3447" selection-end="3447" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="method#Team#0;class#Team#0" expanded="false" />
             <element signature="method#valueChanged#0;class#Team#0" expanded="false" />
             <element signature="method#updatePlayers#0;class#Team#0" expanded="false" />
+            <element signature="method#setTeamData#0;class#Team#0" expanded="false" />
             <element signature="method#getSplitPane#0;class#Team#0" expanded="false" />
             <element signature="method#getStartButton#0;class#Team#0" expanded="false" />
+            <element signature="method#getDone#0;class#Team#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -657,25 +646,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Team.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="7" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
+        <state line="366" column="0" selection-start="17538" selection-end="17538" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="method#Team#0;class#Team#0" expanded="false" />
             <element signature="method#valueChanged#0;class#Team#0" expanded="false" />
             <element signature="method#updatePlayers#0;class#Team#0" expanded="false" />
+            <element signature="method#setTeamData#0;class#Team#0" expanded="false" />
             <element signature="method#getSplitPane#0;class#Team#0" expanded="false" />
             <element signature="method#getStartButton#0;class#Team#0" expanded="false" />
+            <element signature="method#getDone#0;class#Team#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/local/java/jdk1.7.0_25/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="723" column="0" selection-start="26932" selection-end="26932" vertical-scroll-proportion="0.15061297">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="28" selection-start="1882" selection-end="1882" vertical-scroll-proportion="0.44833624">
+        <state line="65" column="17" selection-start="2533" selection-end="2533" vertical-scroll-proportion="0.7162872">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#928#1906#0" expanded="true" />
-            <element signature="e#1895#1896#0" expanded="true" />
-            <element signature="method#createAndShowGUI#0;class#GUI#0" expanded="false" />
+            <element signature="e#1109#2586#0" expanded="true" />
+            <element signature="e#2575#2576#0" expanded="true" />
           </folding>
         </state>
       </provider>
