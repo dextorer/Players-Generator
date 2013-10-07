@@ -54,7 +54,6 @@ public class GUI {
                         JOptionPane.showMessageDialog(null, message, "Info Message", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else {
-                        System.out.println("Send Data");
                         data = data + t.getTeamData();
                         try {
                             FileWriter fstream = new FileWriter("Settings");

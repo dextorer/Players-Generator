@@ -1,6 +1,6 @@
 
 public class Player {
-    private String team;
+  //  private String team;
     private int number = 0;
 	private int attack = 0;
 	private int defense = 0;
@@ -45,9 +45,9 @@ public class Player {
     }
 
     /*** SETTER METHODS ***/
-    public void setTeam(String team) {
+ /*   public void setTeam(String team) {
         this.team = team;
-    }
+    }*/
 
      public void setNumber(int number) {
         this.number = number;

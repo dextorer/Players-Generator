@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c190352-b17a-4009-8e7a-f6939b4a57f0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Player.java" afterPath="$PROJECT_DIR$/src/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Settings" afterPath="$PROJECT_DIR$/Settings" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Team.java" afterPath="$PROJECT_DIR$/src/Team.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -18,8 +19,8 @@
     <file path="$USER_HOME$/Documents/Università/IA/Progetto/JavaProlog/src/Intelligence.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1377540912295" ignored="false" />
     <file path="/Intelligence.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1377540738094" ignored="false" />
     <file path="/Player.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380612936324" ignored="false" />
-    <file path="/Team.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380702972464" ignored="false" />
-    <file path="/Dummy.txt" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380696284887" ignored="false" />
+    <file path="/Team.java" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380981106953" ignored="false" />
+    <file path="/Dummy.txt" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1381003637727" ignored="false" />
     <file path="/a.dummy" changelist="0c190352-b17a-4009-8e7a-f6939b4a57f0" time="1380608780128" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +36,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
@@ -73,6 +73,7 @@
         <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
     </breakpoint_any>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -85,7 +86,7 @@
       <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="25" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0">
+            <state line="48" column="85" selection-start="887" selection-end="887" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -94,15 +95,8 @@
       <file leaf-file-name="Team.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Team.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="366" column="0" selection-start="17538" selection-end="17538" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="method#valueChanged#0;class#Team#0" expanded="false" />
-                <element signature="method#updatePlayers#0;class#Team#0" expanded="false" />
-                <element signature="method#setTeamData#0;class#Team#0" expanded="false" />
-                <element signature="method#getSplitPane#0;class#Team#0" expanded="false" />
-                <element signature="method#getStartButton#0;class#Team#0" expanded="false" />
-                <element signature="method#getDone#0;class#Team#0" expanded="false" />
-              </folding>
+            <state line="311" column="135" selection-start="15302" selection-end="15302" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -110,11 +104,10 @@
       <file leaf-file-name="GUI.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="17" selection-start="2533" selection-end="2533" vertical-scroll-proportion="0.7162872">
+            <state line="67" column="33" selection-start="2530" selection-end="2530" vertical-scroll-proportion="0.4668275">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1109#2586#0" expanded="true" />
-                <element signature="e#2575#2576#0" expanded="true" />
+                <element signature="method#createAndShowGUI#0;class#GUI#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -147,8 +140,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="1" />
-    <option name="width" value="1366" />
-    <option name="height" value="742" />
+    <option name="width" value="1280" />
+    <option name="height" value="998" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -195,8 +188,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -245,6 +236,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -258,7 +251,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../components-DialogDemoProject" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Project_Euler" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="stat_generator" />
@@ -445,8 +438,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="1" width="1366" height="742" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="1" width="1280" height="998" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -456,16 +449,16 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17420435" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31825796" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15681818" sideWeight="0.7118928" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28810722" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15640195" sideWeight="0.71277845" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28722158" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31770223" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -539,6 +532,40 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="41" selection-start="4080" selection-end="4080" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#createAndShowGUI#0;class#GUI#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="25" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Team.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="366" column="0" selection-start="17538" selection-end="17538" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="17" selection-start="2533" selection-end="2533" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#createAndShowGUI#0;class#GUI#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="25" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0">
@@ -549,14 +576,7 @@
     <entry file="file://$PROJECT_DIR$/src/Team.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="259" column="104" selection-start="12996" selection-end="13007" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="method#valueChanged#0;class#Team#0" expanded="false" />
-            <element signature="method#updatePlayers#0;class#Team#0" expanded="false" />
-            <element signature="method#setTeamData#0;class#Team#0" expanded="false" />
-            <element signature="method#getSplitPane#0;class#Team#0" expanded="false" />
-            <element signature="method#getStartButton#0;class#Team#0" expanded="false" />
-            <element signature="method#getDone#0;class#Team#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -565,8 +585,7 @@
         <state line="67" column="36" selection-start="2287" selection-end="2287" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1109#2586#0" expanded="true" />
-            <element signature="e#2575#2576#0" expanded="true" />
+            <element signature="method#createAndShowGUI#0;class#GUI#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -581,14 +600,7 @@
     <entry file="file://$PROJECT_DIR$/src/Team.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="67" column="126" selection-start="3447" selection-end="3447" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="method#valueChanged#0;class#Team#0" expanded="false" />
-            <element signature="method#updatePlayers#0;class#Team#0" expanded="false" />
-            <element signature="method#setTeamData#0;class#Team#0" expanded="false" />
-            <element signature="method#getSplitPane#0;class#Team#0" expanded="false" />
-            <element signature="method#getStartButton#0;class#Team#0" expanded="false" />
-            <element signature="method#getDone#0;class#Team#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -620,58 +632,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/local/java/jdk1.7.0_25/src.zip!/javax/swing/event/ListSelectionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="7" selection-start="624" selection-end="624" vertical-scroll-proportion="0.60420316" />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/local/java/jdk1.7.0_25/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2285" column="0" selection-start="96421" selection-end="96421" vertical-scroll-proportion="0.20770878" />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/local/java/jdk1.7.0_25/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="191" column="0" selection-start="6760" selection-end="6760" vertical-scroll-proportion="0.2554945">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="25" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0">
+        <state line="48" column="85" selection-start="887" selection-end="887" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Team.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="366" column="0" selection-start="17538" selection-end="17538" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="method#valueChanged#0;class#Team#0" expanded="false" />
-            <element signature="method#updatePlayers#0;class#Team#0" expanded="false" />
-            <element signature="method#setTeamData#0;class#Team#0" expanded="false" />
-            <element signature="method#getSplitPane#0;class#Team#0" expanded="false" />
-            <element signature="method#getStartButton#0;class#Team#0" expanded="false" />
-            <element signature="method#getDone#0;class#Team#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/local/java/jdk1.7.0_25/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="723" column="0" selection-start="26932" selection-end="26932" vertical-scroll-proportion="0.15061297">
+        <state line="311" column="135" selection-start="15302" selection-end="15302" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="17" selection-start="2533" selection-end="2533" vertical-scroll-proportion="0.7162872">
+        <state line="67" column="33" selection-start="2530" selection-end="2530" vertical-scroll-proportion="0.4668275">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1109#2586#0" expanded="true" />
-            <element signature="e#2575#2576#0" expanded="true" />
+            <element signature="method#createAndShowGUI#0;class#GUI#0" expanded="false" />
           </folding>
         </state>
       </provider>

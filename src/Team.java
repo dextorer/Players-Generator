@@ -80,7 +80,7 @@ public class Team implements ListSelectionListener, ActionListener {
         // creo array giocatori
         for(int i = 1; i <= players.length; i++) {
             players[i-1] = new Player();
-            players[i-1].setTeam(team);
+          //  players[i-1].setTeam(team);
             players[i-1].setNumber(i);
         }
 
@@ -317,6 +317,8 @@ public class Team implements ListSelectionListener, ActionListener {
             // conversione player --> json
             Gson gson = new Gson();
 
+            team_data  = team_data + "{\"team\":\"" + team + "\",\"formation\":\"" + (String)formations.getSelectedItem() + "\"}"
+                    + '\n';
             // concatena le statistiche in un'unica stringa json
             for (int i = 0; i < players.length; i++) {
                 team_data = team_data + gson.toJson(players[i]) + '\n';
