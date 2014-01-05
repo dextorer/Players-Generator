@@ -57,8 +57,8 @@ public class GUI {
                     }
                     else {
                         data.add("two", t.getTeamData());
-//                        SoccerFrame.teamsConfCallback(data.getAsString());
-                        System.out.println("Data: " + data.toString());
+                        SoccerFrame.teamsConfCallback(data.getAsString());
+//                        System.out.println("Data: " + data.toString());
                     }
                 }
                 f.dispose();
