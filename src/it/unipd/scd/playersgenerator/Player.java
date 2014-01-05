@@ -1,3 +1,4 @@
+package it.unipd.scd.playersgenerator;
 
 public class Player {
   //  private String team;

@@ -1,4 +1,4 @@
-/**
+package it.unipd.scd.playersgenerator; /**
  * Created with IntelliJ IDEA.
  * User: alessandro
  * Date: 9/28/13
@@ -25,11 +25,15 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import net.miginfocom.swing.MigLayout;
 
 public class Team implements ListSelectionListener, ActionListener {
     private String team;
-    private String team_data;
+    private JsonObject team_data;
     boolean done = false;
 
     private Player[] players = new Player[18];							// player's array
@@ -317,12 +321,26 @@ public class Team implements ListSelectionListener, ActionListener {
             // conversione player --> json
             Gson gson = new Gson();
 
-            team_data  = team_data + "{\"team\":\"" + team + "\",\"formation\":\"" + (String)formations.getSelectedItem() + "\"}"
-                    + '\n';
+            JsonObject root = new JsonObject();
+
+//            team_data  = team_data + "{\"team\":\"" + team + "\",\"formation\":\"" + (String)formations.getSelectedItem() + "\"}"
+//                    + '\n';
             // concatena le statistiche in un'unica stringa json
+
+            JsonArray array = new JsonArray();
             for (int i = 0; i < players.length; i++) {
-                team_data = team_data + gson.toJson(players[i]) + '\n';
+//                team_data = team_data + gson.toJson(players[i]) + '\n';
+                array.add(new JsonParser().parse(gson.toJson(players[i])));
             }
+
+            JsonObject teamObj = new JsonObject();
+
+            teamObj.addProperty("team", team);
+            teamObj.addProperty("formation", (String) formations.getSelectedItem());
+            teamObj.add("players", array);
+
+            team_data = teamObj;
+
             done = true;
         }
     }
@@ -348,7 +366,7 @@ public class Team implements ListSelectionListener, ActionListener {
         list.setSelectedIndex(0);
     }
 
-    public void setTeamData(String team_data) {
+    public void setTeamData(JsonObject team_data) {
         this.team_data = team_data;
     }
 
@@ -369,7 +387,7 @@ public class Team implements ListSelectionListener, ActionListener {
         return team;
     }
 
-    public String getTeamData() {
+    public JsonObject getTeamData() {
         return team_data;
     }
 

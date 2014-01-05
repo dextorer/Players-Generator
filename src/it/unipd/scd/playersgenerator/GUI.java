@@ -1,3 +1,4 @@
+package it.unipd.scd.playersgenerator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -7,14 +8,16 @@
  * To change this template use File | Settings | File Templates.
  */
 
+import com.google.gson.JsonObject;
+import it.unipd.scd.SoccerField;
+import it.unipd.scd.gui.SoccerFrame;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.lang.InterruptedException;
 
 public class GUI {
@@ -24,10 +27,9 @@ public class GUI {
     private static final JFrame t2_frame = new JFrame("Team 2");
     private static final Team t1 = new Team("Team_One");
     private static final Team t2 = new Team("Team_Two");
-
     private static Thread check_t1, check_t2;
     private static boolean one_team_left = false;
-    private static String data = "";
+    private static JsonObject data;
     private static String team1_data = "";
     private static String team2_data = "";
 
@@ -43,7 +45,7 @@ public class GUI {
                 synchronized (this) {
                     if (!one_team_left) {
                         one_team_left = true;
-                        data = t.getTeamData();
+                        data.add("one", t.getTeamData());
                         String message = "Setup ";
                         if (t.getTeam().equals("Team_One"))
                             message = message + "Team 2 ";
@@ -54,13 +56,9 @@ public class GUI {
                         JOptionPane.showMessageDialog(null, message, "Info Message", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else {
-                        data = data + t.getTeamData();
-                        try {
-                            FileWriter fstream = new FileWriter("Settings");
-                            BufferedWriter out = new BufferedWriter(fstream);
-                            out.write(data);
-                            out.close();
-                        } catch (Exception exc) { System.err.println("Error: " + exc.getMessage());}
+                        data.add("two", t.getTeamData());
+//                        SoccerFrame.teamsConfCallback(data.getAsString());
+                        System.out.println("Data: " + data.toString());
                     }
                 }
                 f.dispose();
@@ -96,7 +94,7 @@ public class GUI {
         int y1 = (dim1.height-frame_height)/2;
         t1_frame.setLocation(x1,y1);
 
-        t1.setTeamData(team1_data);
+        t1.setTeamData(null);
 
         //Create and set up the window for team 2.
         t2_frame.setLayout(new FlowLayout());
@@ -118,23 +116,31 @@ public class GUI {
         int y2 = (dim2.height-frame_height)/2;
         t2_frame.setLocation(x2,y2);
 
-        t2.setTeamData(team2_data);
+        t2.setTeamData(null);
     }
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
+    public static void showGUI() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+//                createAndShowGUI();
             }
         });
+
+        data = new JsonObject();
+
+        createAndShowGUI();
 
         check_t1 = makeThread(t1,t1_frame);
         check_t2 = makeThread(t2,t2_frame);
 
         check_t1.start();
         check_t2.start();
+    }
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        showGUI();
     }
 }
