@@ -9,16 +9,9 @@ package it.unipd.scd.playersgenerator;
  */
 
 import com.google.gson.JsonObject;
-import it.unipd.scd.SoccerField;
-import it.unipd.scd.gui.SoccerFrame;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import java.lang.InterruptedException;
+import javax.swing.*;
+import java.awt.*;
 
 public class GUI {
     private static final int frame_width = 570;
@@ -32,6 +25,8 @@ public class GUI {
     private static JsonObject data;
     private static String team1_data = "";
     private static String team2_data = "";
+
+    private static ConfigurationCallback CALLBACK;
 
     private static Thread makeThread(final Team t, final JFrame f) {
         Runnable runloop = new Runnable() {
@@ -57,8 +52,9 @@ public class GUI {
                     }
                     else {
                         data.add("two", t.getTeamData());
-                        SoccerFrame.teamsConfCallback(data.getAsString());
-//                        System.out.println("Data: " + data.toString());
+                        if (CALLBACK != null) {
+                            CALLBACK.onConfigurationConfirmed(data.toString());
+                        }
                     }
                 }
                 f.dispose();
@@ -119,12 +115,9 @@ public class GUI {
         t2.setTeamData(null);
     }
 
-    public static void showGUI() {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-//                createAndShowGUI();
-            }
-        });
+    public static void showGUI(ConfigurationCallback callback) {
+
+        GUI.CALLBACK = callback;
 
         data = new JsonObject();
 
@@ -141,6 +134,6 @@ public class GUI {
      * @param args
      */
     public static void main(String[] args) {
-        showGUI();
+        showGUI(null);
     }
 }

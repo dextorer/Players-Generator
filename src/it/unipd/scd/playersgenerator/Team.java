@@ -315,6 +315,8 @@ public class Team implements ListSelectionListener, ActionListener {
                         players[i].setGoal_keeping(rand.nextInt(100));
                 }
             }
+
+            start_button.doClick();
         }
         // fired whenever the button "Start" is clicked
         else if (e.getActionCommand().equals("start")) {
